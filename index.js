@@ -9,6 +9,8 @@ const categoryRoute = require("./routes/categories");
 const multer = require("multer");
 const path = require("path");
 
+const PORT = process.env.PORT || 5000;
+
 dotenv.config();
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
@@ -42,6 +44,10 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
 
-app.listen("5000", () => {
+if(process.env.NODE_ENV == "production") {
+  app.use(express.static("client/build"));
+}
+
+app.listen(PORT, () => {
   console.log("Backend is running");
 });
