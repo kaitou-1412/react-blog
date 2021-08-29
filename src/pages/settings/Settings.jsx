@@ -12,7 +12,6 @@ export default function Settings() {
   const [success, setSuccess] = useState(false);
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,9 +27,20 @@ export default function Settings() {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      updatedUser.profilePic = filename;
+      data.append("upload_preset", "react-blog");
+      data.append("cloud_name", "dn2hzsmt9");
       try {
-        await axios.post("/upload", data);
+        await fetch("https://api.cloudinary.com/v1_1/dn2hzsmt9/image/upload",{ 
+          method:"post",
+          body:data
+        })
+        .then(res => res.json())
+        .then(data => {
+          updatedUser.profilePic = data.url;
+        })
+        .catch(err => {
+          console.log(err);
+        })
       } catch (err) {}
     }
     try {
@@ -52,7 +62,7 @@ export default function Settings() {
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+              src={file ? URL.createObjectURL(file) : user.profilePic}
               alt=""
             />
             <label htmlFor="fileInput">

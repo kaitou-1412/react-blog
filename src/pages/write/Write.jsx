@@ -8,7 +8,7 @@ export default function Write() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -21,9 +21,20 @@ export default function Write() {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      newPost.photo = filename;
-      try {
-        await axios.post("/upload", data);
+      data.append("upload_preset", "react-blog");
+      data.append("cloud_name", "dn2hzsmt9");
+      try{
+        await fetch("https://api.cloudinary.com/v1_1/dn2hzsmt9/image/upload",{ 
+          method:"post",
+          body:data
+        })
+        .then(res => res.json())
+        .then(data => {
+          newPost.photo = data.url;
+        })
+        .catch(err => {
+          console.log(err);
+        })
       } catch (err) {}
     }
     try {
