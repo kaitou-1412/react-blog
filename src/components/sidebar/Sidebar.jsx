@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./sidebar.css";
 
+axios.defaults.baseURL = "https://ruban-blog-api.herokuapp.com/";
+
 export default function Sidebar() {
   const [cats, setCats] = useState([]);
 

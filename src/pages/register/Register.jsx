@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./register.css";
 
+axios.defaults.baseURL = "https://ruban-blog-api.herokuapp.com/";
+
 export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import "./singlePost.css";
 
+axios.defaults.baseURL = "https://ruban-blog-api.herokuapp.com/";
+
 export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split("/")[2];

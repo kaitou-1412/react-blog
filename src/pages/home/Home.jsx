@@ -6,6 +6,8 @@ import "./home.css";
 import axios from "axios";
 import { useLocation } from "react-router";
 
+axios.defaults.baseURL = "https://ruban-blog-api.herokuapp.com/";
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const { search } = useLocation();

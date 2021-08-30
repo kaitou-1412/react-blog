@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://ruban-blog-api.herokuapp.com/";
+
 export default function Settings() {
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState("");
