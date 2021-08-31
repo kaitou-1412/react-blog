@@ -47,7 +47,6 @@
 .writeText {
 	font-size: 20px;
 	height: 100vh;
-	white-space: pre-wrap;
 }
 
 .writeSubmit {
