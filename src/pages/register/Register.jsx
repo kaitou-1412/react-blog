@@ -20,7 +20,10 @@ export default function Register() {
         email,
         password,
       });
-      res.data && window.location.assign("/login");
+      if(res.data){
+        window.location.assign("/login");
+        window.location.reload();
+      }
     } catch (err) {
       setError(true);
       console.log(err);
