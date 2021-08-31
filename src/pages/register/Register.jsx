@@ -21,8 +21,7 @@ export default function Register() {
         password,
       });
       if(res.data){
-        window.location.assign("/login");
-        window.location.reload();
+        window.location.replace("/login");
       }
     } catch (err) {
       setError(true);
