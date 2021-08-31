@@ -32,7 +32,7 @@ export default function Write() {
         })
         .then(res => res.json())
         .then(data => {
-          newPost.photo = data.url;
+          newPost.photo = data.secure_url;
         })
         .catch(err => {
           console.log(err);

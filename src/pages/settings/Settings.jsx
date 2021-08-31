@@ -38,7 +38,7 @@ export default function Settings() {
         })
         .then(res => res.json())
         .then(data => {
-          updatedUser.profilePic = data.url;
+          updatedUser.profilePic = data.secure_url;
         })
         .catch(err => {
           console.log(err);
